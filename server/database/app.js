@@ -56,6 +56,25 @@ app.get('/fetchReviews/dealer/:id', async (req, res) => {
   }
 });
 
+app.get('/fetchReviews/car/:carmake', async (req, res) => {
+    try {
+      const documents = await Reviews.find({carmake: req.params.carmake});
+      res.json(documents);
+    } catch (error) {
+      res.status(500).json({ error: 'Error fetching documents' });
+    }
+  });
+
+app.get('/fetchReviews/car/:carmodel', async (req, res) => {
+    try {
+      const documents = await Reviews.find({carmodel: req.params.carmodel});
+      res.json(documents);
+    } catch (error) {
+      res.status(500).json({ error: 'Error fetching documents' });
+    }
+  });
+  
+
 // Express route to fetch all dealerships
 app.get('/fetchDealers', async (req, res) => {
     try{
@@ -65,6 +84,8 @@ app.get('/fetchDealers', async (req, res) => {
       res.status(500).json({ error: 'Error fetching documents' });
     }
 });
+
+
 
 // Express route to fetch Dealers by a particular state
 app.get('/fetchDealers/:state', async (req, res) => {
