@@ -65,9 +65,10 @@ app.get('/fetchReviews/car/:carmake', async (req, res) => {
     }
   });
 
-app.get('/fetchReviews/car/:carmodel', async (req, res) => {
+app.get('/fetchReviews/car/:carmake/:carmodel', async (req, res) => {
     try {
-      const documents = await Reviews.find({carmodel: req.params.carmodel});
+        const { carmake, carmodel } = req.params;
+        const documents = await Reviews.find({ carmake, carmodel });
       res.json(documents);
     } catch (error) {
       res.status(500).json({ error: 'Error fetching documents' });
