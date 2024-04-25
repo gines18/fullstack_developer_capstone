@@ -2,9 +2,6 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import logout
-
-
-
 from .models import CarMake, CarModel
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -62,27 +59,27 @@ def registration(request):
     # If it is a new user
     if not username_exist:
         # Create user in auth_user table
-        user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,password=password, email=email)
+        user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, password=password, email=email)
         # Login the user and redirect to list page
         login(request, user)
-        data = {"userName": username,"status":"Authenticated"}
+        data = {"userName": username,"status": "Authenticated"}
         return JsonResponse(data)
     else :
-        data = {"userName": username,"error":"Already Registered"}
+        data = {"userName": username,"error": "Already Registered"}
         return JsonResponse(data)
 
 def get_dealerships(request, state="All"):
     if(state == "All"):
         endpoint = "/fetchDealers"
     else:
-        endpoint = "/fetchDealers/"+state
+        endpoint = "/fetchDealers/" + state
     dealerships = get_request(endpoint)
-    return JsonResponse({"status": 200,"dealers": dealerships})
+    return JsonResponse({"status": 200, "dealers": dealerships})
 
 
 def get_dealer_details(request, dealer_id):
     if(dealer_id):
-        endpoint = "/fetchDealer/"+str(dealer_id)
+        endpoint = "/fetchDealer/" + str(dealer_id)
         dealership = get_request(endpoint)
         return JsonResponse({"status": 200,"dealer": dealership})
     else:
@@ -105,15 +102,15 @@ def get_dealer_reviews(request, dealer_id):
 # Create a `add_review` view to submit a review
 # def add_review(request):
 def add_review(request):
-    if(request.user.is_anonymous == False):
+    if not request.user.is_anonymous:
         data = json.loads(request.body)
         try:
             response = post_review(data)
             return JsonResponse({"status": 200})
         except:
-            return JsonResponse({"status": 401,"message":"Error in posting review"})
+            return JsonResponse({"status": 401,"message": "Error in posting review"})
     else:
-        return JsonResponse({"status": 403,"message":"Unauthorized"})
+        return JsonResponse({"status": 403,"message": "Unauthorized"})
         
 
 def get_cars(request):
