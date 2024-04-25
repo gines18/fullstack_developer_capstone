@@ -31,5 +31,3 @@ class CarModel(models.Model):
 
     def __str__(self):
         return self.name
-
-# Newline at the end of the file

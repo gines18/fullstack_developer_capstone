@@ -45,7 +45,7 @@ def initiate():
        "car_make": car_make_instances[4]},
       {"name": "Camry", "type": "Sedan", "year": 2023,
        "car_make": car_make_instances[4]},
-      {"name": "Kluger", "type": "SUV", "year": 2023
+      {"name": "Kluger", "type": "SUV", "year": 2023,
        "car_make": car_make_instances[4]},
     ]
 
@@ -55,5 +55,4 @@ def initiate():
         car_make=data['car_make'],
         type=data['type'],
         year=data['year'])
-
-# Newline at the end of the file
+        
