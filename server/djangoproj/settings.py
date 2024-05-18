@@ -28,9 +28,9 @@ SECRET_KEY =\
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost', 
+    'localhost',
     'ruczkowskim-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
-    'dealership.1gaa6uhjdln9.us-south.codeengine.appdomain.cloud'
+    'dealership.1h42d41hevw4.us-south.codeengine.appdomain.cloud'
     ]
 
 CSRF_TRUSTED_ORIGINS = [
